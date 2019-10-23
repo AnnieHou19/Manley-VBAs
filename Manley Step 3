@@ -6,9 +6,6 @@ Worksheets("Raw").Copy after:=Worksheets(Sheets.Count)
 ActiveSheet.Name = "Magazine"
 
 Worksheets("Raw").Copy after:=Worksheets(Sheets.Count)
-ActiveSheet.Name = "Cinema"
-
-Worksheets("Raw").Copy after:=Worksheets(Sheets.Count)
 ActiveSheet.Name = "OOH"
 
 End Sub
@@ -21,18 +18,71 @@ Dim fullcounter As Long
 
 fullcounter = Worksheets("Newspaper").Cells(Rows.Count, 1).End(xlUp).Row
     For i = fullcounter To 2 Step -1
-    If Not Sheets("Tier 2").Cells(i, 1).Value = "FCA Canada DAA Brand" Then
-    Worksheets("Tier 2").Cells(i, 1).EntireRow.Delete
+    If Not Sheets("Newspaper").Cells(i, 1).Value = "FCA Canada DAA Brand" Then
+    Worksheets("Newspaper").Cells(i, 1).EntireRow.Delete
     End If
     Next i
     
 fullcounter = Worksheets("Newspaper").Cells(Rows.Count, 1).End(xlUp).Row
     For i = fullcounter To 2 Step -1
-    If Not Sheets("Tier 2").Cells(i, 3).Value = "Local Newspaper" Then
-    Worksheets("Tier 2").Cells(i, 3).EntireRow.Delete
+    If Not Sheets("Newspaper").Cells(i, 3).Value = "Local Newspaper" Then
+    Worksheets("Newspaper").Cells(i, 3).EntireRow.Delete
     End If
     Next i
 
+On Error Resume Next
+Application.ScreenUpdating = True
+
+MsgBox "Succeeded."
+
+End Sub
+
+Sub DeleteRowsMagazine()
+
+Application.ScreenUpdating = False
+
+Dim fullcounter As Long
+
+fullcounter = Worksheets("Magazine").Cells(Rows.Count, 1).End(xlUp).Row
+    For i = fullcounter To 2 Step -1
+    If Not Sheets("Magazine").Cells(i, 1).Value = "FCA Canada DAA Brand" Then
+    Worksheets("Magazine").Cells(i, 1).EntireRow.Delete
+    End If
+    Next i
+    
+fullcounter = Worksheets("Magazine").Cells(Rows.Count, 1).End(xlUp).Row
+    For i = fullcounter To 2 Step -1
+    If Not Sheets("Magazine").Cells(i, 3).Value = "Magazines" Then
+    Worksheets("Magazine").Cells(i, 3).EntireRow.Delete
+    End If
+    Next i
+
+On Error Resume Next
+Application.ScreenUpdating = True
+
+MsgBox "Succeeded."
+
+End Sub
+
+Sub DeleteRowsOOH()
+Application.ScreenUpdating = False
+
+Dim fullcounter As Long
+
+fullcounter = Worksheets("OOH").Cells(Rows.Count, 1).End(xlUp).Row
+    For i = fullcounter To 2 Step -1
+    If Not Sheets("OOH").Cells(i, 1).Value = "FCA Canada DAA Brand" Then
+    Worksheets("OOH").Cells(i, 1).EntireRow.Delete
+    End If
+    Next i
+    
+fullcounter = Worksheets("OOH").Cells(Rows.Count, 1).End(xlUp).Row
+    For i = fullcounter To 2 Step -1
+    If Not Sheets("OOH").Cells(i, 3).Value = "OOH" Then
+    Worksheets("OOH").Cells(i, 3).EntireRow.Delete
+    End If
+    Next i
+    
 On Error Resume Next
 Application.ScreenUpdating = True
 
