@@ -1,0 +1,41 @@
+Sub CopyCandaceData()
+Worksheets("Raw").Copy after:=Worksheets(Sheets.Count)
+ActiveSheet.Name = "Newspaper"
+
+Worksheets("Raw").Copy after:=Worksheets(Sheets.Count)
+ActiveSheet.Name = "Magazine"
+
+Worksheets("Raw").Copy after:=Worksheets(Sheets.Count)
+ActiveSheet.Name = "Cinema"
+
+Worksheets("Raw").Copy after:=Worksheets(Sheets.Count)
+ActiveSheet.Name = "OOH"
+
+End Sub
+
+Sub DeleteRowsNewspaper()
+
+Application.ScreenUpdating = False
+
+Dim fullcounter As Long
+
+fullcounter = Worksheets("Newspaper").Cells(Rows.Count, 1).End(xlUp).Row
+    For i = fullcounter To 2 Step -1
+    If Not Sheets("Tier 2").Cells(i, 1).Value = "FCA Canada DAA Brand" Then
+    Worksheets("Tier 2").Cells(i, 1).EntireRow.Delete
+    End If
+    Next i
+    
+fullcounter = Worksheets("Newspaper").Cells(Rows.Count, 1).End(xlUp).Row
+    For i = fullcounter To 2 Step -1
+    If Not Sheets("Tier 2").Cells(i, 3).Value = "Local Newspaper" Then
+    Worksheets("Tier 2").Cells(i, 3).EntireRow.Delete
+    End If
+    Next i
+
+On Error Resume Next
+Application.ScreenUpdating = True
+
+MsgBox "Succeeded."
+
+End Sub
